@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ignite Institute of Technology</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  /* High-Contrast, Accessible Color Palette */
+  --blue: #2563EB;        
+  --blue-text: #1D4ED8;   
+  --blue-dark: #1E3A8A;   
+  --blue-light: #3B82F6;
+  --red: #E11D48;         
+  --white: #FFFFFF;
+  --cream: #F8FAFC;       
+  --ink: #020617;         
+  --slate: #334155;       
+  --border: #CBD5E1;      
+  --blue-tint: #EFF6FF;
+  --blue-tint2: #DBEAFE;
+  
+  --shadow-sm: 0 2px 8px -2px rgba(15, 23, 42, 0.08);
+  --shadow-md: 0 8px 24px -4px rgba(15, 23, 42, 0.12);
+  --shadow-btn: 0 6px 16px rgba(37, 99, 235, 0.3);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--white);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased;text-align:left;}
+
+/* ── TYPOGRAPHY FIXES ── */
+h1, h2, h3, .title, .level-heading { text-wrap: balance; }
+p, .sub, .c-desc, .cc-d, .wc-d, .step-d, .ri-text { text-align: left; }
+
+/* ── NAVBAR ── */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 5%;height:72px;
+  background:rgba(255,255,255,0.95);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.logo-mark{
+  width:42px;height:42px;background:var(--blue);border-radius:14px;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  box-shadow:var(--shadow-btn);
+}
+.logo-mark svg{width:20px;height:20px;stroke:white;stroke-width:2.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.logo-text{font-family:'Outfit',sans-serif;font-weight:800;font-size:1.05rem;line-height:1.2;text-align:left;}
+.logo-text span{color:var(--ink);display:block}
+.logo-text em{color:var(--blue-text);font-style:normal;display:block;font-weight:600;font-size:0.85rem}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{color:var(--slate);text-decoration:none;font-size:0.95rem;font-weight:600;transition:color .2s}
+.nav-links a:hover{color:var(--blue-text)}
+.nav-btn{
+  background:var(--blue);color:white;padding:.7rem 1.6rem;
+  border-radius:12px;text-decoration:none;font-size:.95rem;font-weight:600;
+  transition:all .2s;box-shadow:var(--shadow-btn);
+}
+.nav-btn:hover{background:var(--blue-dark);transform:translateY(-2px);box-shadow:0 8px 20px rgba(37,99,235,0.4)}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;
+  background:var(--white);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:120px 5% 5rem;
+  position:relative;
+  overflow:hidden;
+  text-align:center;
+}
+.hero-noise{
+  position:absolute;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events:none;
+  opacity:.06;
+}
+.hero-glow{
+  position:absolute;top:-200px;right:-100px;
+  width:800px;height:800px;border-radius:50%;
+  background:radial-gradient(circle,rgba(37,99,235,0.06) 0%,transparent 65%);
+  pointer-events:none;
+}
+.hero-glow2{
+  position:absolute;bottom:-100px;left:-50px;
+  width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(circle,rgba(225,29,72,0.04) 0%,transparent 65%);
+  pointer-events:none;
+}
+.hero-content{
+  position:relative;z-index:2;max-width:900px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+.hero-pill{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--blue-tint2);
+  border:1px solid var(--blue-light);
+  color:var(--blue-dark);
+  padding:.5rem 1.4rem;border-radius:50px;
+  font-size:.85rem;font-weight:700;
+  letter-spacing:.05em;text-transform:uppercase;
+  margin-bottom:2rem;
+}
+.pill-dot{width:8px;height:8px;background:var(--red);border-radius:50%;animation:pop 2s ease-in-out infinite}
+@keyframes pop{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(.7);opacity:.5}}
+.hero h1{
+  font-family:'Outfit',sans-serif;font-weight:800;
+  font-size:clamp(2.5rem,6vw,5.5rem);line-height:1.05;
+  letter-spacing:-.02em;
+  color:var(--blue-text);
+  margin-bottom:1.8rem;
+}
+.hero h1 .red{color:var(--red)}
+.hero h1 .dim{color:var(--slate)} 
+.hero p{
+  font-size:1.2rem;
+  color:var(--slate);
+  line-height:1.7;max-width:650px;
+  margin: 0 auto 2.5rem auto;
+  font-weight:500;
+  text-align:center;
+}
+.hero-btns{display:flex;gap:1.2rem;flex-wrap:wrap;justify-content:center;margin-bottom:4.5rem; width: 100%;}
+.btn-primary{
+  background:var(--blue);color:white;
+  padding:1rem 2.2rem;border-radius:14px;
+  text-decoration:none;font-weight:600;font-size:1.05rem;
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  box-shadow:var(--shadow-btn);
+  transition:all .2s;
+}
+.btn-primary:hover{background:var(--blue-dark);transform:translateY(-2px);box-shadow:0 10px 25px rgba(37,99,235,.4)}
+.btn-ghost{
+  background:var(--white);
+  color:var(--blue-text);
+  padding:1rem 2.2rem;border-radius:14px;
+  text-decoration:none;font-weight:700;font-size:1.05rem;
+  display:inline-flex;align-items:center;justify-content:center;
+  border:2px solid var(--blue);
+  transition:all .2s;
+}
+.btn-ghost:hover{background:var(--blue-tint);transform:translateY(-2px)}
+.hero-stats{
+  display:flex;gap:3rem;flex-wrap:wrap;justify-content:center;
+  padding-top:2.5rem;border-top:1px solid var(--border);
+  width:100%;
+}
+.hs-num{font-family:'Outfit',sans-serif;font-size:2.5rem;font-weight:800;color:var(--blue-text)}
+.hs-num .accent{color:var(--red)}
+.hs-lbl{font-size:.85rem;color:var(--ink);text-transform:uppercase;letter-spacing:.05em;margin-top:4px;font-weight:700}
+
+/* ── MARQUEE ── */
+.marquee-bar{background:var(--blue-tint2);padding:1rem 0;overflow:hidden;white-space:nowrap;border-bottom:1px solid var(--border);border-top:1px solid var(--border);}
+.marquee-inner{display:inline-flex;gap:3rem;animation:run 30s linear infinite}
+.mi{
+  display:flex;align-items:center;gap:1.2rem;
+  font-family:'Outfit',sans-serif;font-weight:700;
+  font-size:.9rem;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--blue-dark);
+}
+.mi::before{content:'';width:6px;height:6px;background:var(--blue-text);border-radius:50%}
+@keyframes run{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── GENERIC SECTION ── */
+.section{padding:7rem 5%}
+.label{font-size:.85rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;margin-bottom:1rem;display:inline-block;padding:0.4rem 1rem;border-radius:50px;background:white;}
+.label-red{color:var(--red);background:#FFE4E6;border:1px solid #FECDD3}
+.label-blue{color:var(--blue-text);background:var(--blue-tint2);border:1px solid #BFDBFE}
+.title{font-family:'Outfit',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3.2rem);line-height:1.15;letter-spacing:-.02em;margin-bottom:1.2rem;color:var(--ink)}
+.sub{font-size:1.15rem;line-height:1.7;max-width:550px;color:var(--slate);font-weight:500;}
+.header-center { display: flex; flex-direction: column; align-items: center; text-align: center; }
+
+/* ── PROBLEM ── */
+.prob-bg{background:var(--cream)}
+.prob-grid{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;margin-top:4rem}
+.col-tag{
+  display:inline-block;padding:.5rem 1.2rem;border-radius:8px;
+  font-size:.8rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;
+  margin-bottom:1.5rem;
+}
+.col-tag.gap{background:#FFE4E6;color:var(--red);border:1px solid #FECDD3}
+.col-tag.fix{background:var(--blue-tint2);color:var(--blue-dark);border:1px solid #BFDBFE}
+.row-item{
+  display:flex;gap:1.2rem;align-items:flex-start;
+  padding:1.4rem 1.6rem;border-radius:14px;margin-bottom:.8rem;
+  transition:transform 0.2s;
+}
+.row-item:hover{transform:translateX(4px);}
+.row-item.neg{background:var(--white);border:1px solid var(--border)}
+.row-item.pos{background:var(--white);border:2px solid var(--blue-tint2);box-shadow:var(--shadow-sm)}
+.ri-ico{
+  width:42px;height:42px;border-radius:10px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:1.2rem;
+}
+.ri-ico.n{background:#FFE4E6;color:var(--red)}
+.ri-ico.p{background:var(--blue-tint2);color:var(--blue-text)}
+.ri-text{font-size:1rem;line-height:1.6;color:var(--ink);font-weight:600}
+.complete-banner{
+  margin-top:2rem;background:var(--blue-text);
+  border-radius:16px;padding:1.8rem;color:white;
+  box-shadow:var(--shadow-md);
+  text-align: left;
+}
+.complete-banner strong{font-family:'Outfit',sans-serif;font-size:1.2rem;display:block;margin-bottom:8px;font-weight:800;}
+.complete-banner span{font-size:.95rem;color:rgba(255,255,255,.9);line-height:1.6;display:block;font-weight:500;}
+
+/* ── CURRICULUM ── */
+.curr-bg{background:var(--white)}
+.level-heading{
+  font-family:'Outfit',sans-serif;
+  font-weight:800;
+  font-size:1.8rem;
+  color:var(--ink);
+  margin:3.5rem 0 1.5rem;
+  padding-bottom:0.8rem;
+  border-bottom:2px solid var(--border);
+  text-align: left;
+}
+.c-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.c-card{
+  background:var(--cream);
+  border:1px solid var(--border);
+  border-radius:20px;padding:2.2rem;
+  position:relative;overflow:hidden;
+  transition:all .3s ease;
+  text-align: left;
+}
+.c-card:hover{background:var(--white);transform:translateY(-6px);border-color:var(--blue-light);box-shadow:var(--shadow-md)}
+.c-card::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:var(--blue)}
+.c-card:nth-child(2)::before{background:var(--red)}
+.c-card:nth-child(3)::before{background:var(--blue-light)}
+.c-lvl{font-size:.85rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--blue-text);margin-bottom:.8rem}
+.c-name{font-family:'Outfit',sans-serif;font-weight:800;font-size:1.3rem;color:var(--ink);margin-bottom:.8rem}
+.c-desc{font-size:1rem;color:var(--slate);line-height:1.6;margin-bottom:1.5rem;font-weight:500;}
+.c-out{font-size:.9rem;color:var(--blue-dark);background:var(--blue-tint2);padding:1.2rem;border-radius:12px;line-height:1.5;font-weight:700;text-align:left;}
+
+/* ── STATS ── */
+.stats-bg{background:var(--cream);padding:6rem 5%}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:4rem}
+.s-card{
+  background:white;border:1px solid var(--border);
+  border-radius:20px;padding:2.5rem 1.5rem;text-align:center;
+  transition:all .3s ease;
+}
+.s-card:hover{border-color:var(--blue-light);transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.s-num{font-family:'Outfit',sans-serif;font-size:3.5rem;font-weight:800;color:var(--ink);line-height:1;margin-bottom:.8rem}
+.s-num .r{color:var(--blue-text)}
+.s-lbl{font-size:1rem;color:var(--slate);line-height:1.5;font-weight:600;}
+
+/* ── HOW ── */
+.how-bg{background:var(--white)}
+.steps-row{display:grid;grid-template-columns:repeat(5,1fr);gap:1.5rem;margin-top:4.5rem;position:relative}
+.steps-row::before{content:'';position:absolute;top:32px;left:10%;right:10%;height:2px;background:var(--blue-tint2);z-index:0}
+.step-item{text-align:center;position:relative;z-index:1;padding:0 .5rem}
+.step-circle{
+  width:64px;height:64px;border-radius:50%;
+  background:var(--white);color:var(--blue-text);
+  font-family:'Outfit',sans-serif;font-weight:800;font-size:1.2rem;
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 1.2rem;
+  border:4px solid var(--blue-tint2);
+  box-shadow:var(--shadow-sm);
+  transition:all 0.3s ease;
+}
+.step-item:hover .step-circle {border-color:var(--blue); background:var(--blue); color:white; transform:scale(1.1);}
+.step-content { display: flex; flex-direction: column; }
+.step-t{font-family:'Outfit',sans-serif;font-weight:800;font-size:1.1rem;color:var(--ink);margin-bottom:.6rem}
+.step-d{font-size:.95rem;color:var(--slate);line-height:1.6;font-weight:500;}
+
+/* ── COMMITMENT ── */
+.commit-bg{background:var(--cream)}
+.commit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:4rem}
+.cc{
+  background:white;border:1px solid var(--border);
+  border-radius:20px;padding:2.2rem;
+  transition:all .3s ease;
+  text-align: left;
+}
+.cc:hover{border-color:var(--blue-light);transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.cc-ico{
+  width:58px;height:58px;background:var(--blue-tint2);color:var(--blue-text);
+  border-radius:14px;display:flex;align-items:center;justify-content:center;
+  font-size:1.8rem;margin-bottom:1.5rem;
+}
+.cc-t{font-family:'Outfit',sans-serif;font-weight:800;font-size:1.2rem;color:var(--ink);margin-bottom:.8rem}
+.cc-d{font-size:1rem;color:var(--slate);line-height:1.6;font-weight:500;}
+
+/* ── WHY ── */
+.why-bg{background:var(--white)}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:4rem}
+.wc{
+  background:var(--cream);border:1px solid var(--border);
+  border-radius:20px;padding:2.2rem;
+  display:flex;gap:1.5rem;align-items:flex-start;
+  transition:all .3s ease;
+  text-align: left;
+}
+.wc:hover{border-color:var(--blue-light);background:var(--white);transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.wc-ico{font-size:2.5rem;flex-shrink:0;background:var(--blue-tint2);padding:14px;border-radius:16px;}
+.wc-t{font-family:'Outfit',sans-serif;font-weight:800;font-size:1.3rem;color:var(--ink);margin-bottom:.6rem}
+.wc-d{font-size:1rem;color:var(--slate);line-height:1.6;font-weight:500;}
+
+/* ── CTA ── */
+.cta-section{
+  background:var(--cream);
+  padding:8rem 5%;
+  text-align:center;position:relative;overflow:hidden;
+  border-top: 1px solid var(--border);
+}
+.cta-glow{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:700px;height:500px;
+  background:radial-gradient(ellipse,rgba(37,99,235,.08) 0%,transparent 70%);
+  pointer-events:none;
+}
+.cta-section h2{
+  font-family:'Outfit',sans-serif;font-weight:800;
+  font-size:clamp(2.2rem,5vw,4.5rem);
+  letter-spacing:-.02em;color:var(--ink);line-height:1.1;
+  margin-bottom:1.5rem;position:relative;z-index:2;
+}
+.cta-section h2 .r{color:var(--blue-text)}
+.cta-section>p{font-size:1.2rem;color:var(--slate);margin:0 auto 3rem auto;max-width:700px;font-weight:500;position:relative;z-index:2;line-height:1.7;text-align:center;}
+.cta-btns{display:flex;gap:1.2rem;justify-content:center;flex-wrap:wrap;margin-bottom:4rem;position:relative;z-index:2; width: 100%;}
+
+/* Button Styles for CTA */
+.btn-whatsapp {
+  background: transparent;
+  color: var(--blue-text);
+  padding: 1rem 2.2rem;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.05rem;
+  border: 2px solid var(--blue);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+}
+.btn-whatsapp svg {
+  stroke: var(--blue-text);
+  transition: all 0.3s ease;
+}
+.btn-whatsapp:hover {
+  background: #25D366; /* WhatsApp Green */
+  border-color: #25D366;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+}
+.btn-whatsapp:hover svg {
+  stroke: white;
+}
+.btn-ghost-email {
+  background: transparent;
+  color: var(--blue-text);
+  padding: 1rem 2.2rem;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.05rem;
+  border: 2px solid var(--blue);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+}
+.btn-ghost-email svg {
+  stroke: var(--blue-text);
+  transition: all 0.3s ease;
+}
+.btn-ghost-email:hover {
+  background: var(--blue-tint);
+  transform: translateY(-2px);
+}
+
+/* Contacts Area */
+.contacts{
+  display:flex;gap:2.5rem;justify-content:center;flex-wrap:wrap;
+  padding-top:2.5rem;border-top:1px solid var(--border);
+  position:relative;z-index:2;
+}
+.ci{display:flex;align-items:center;gap:1rem;font-size:1.05rem;color:var(--ink);font-weight:600;text-align:left;}
+.ci a{color:var(--blue-text);text-decoration:none;transition:color .2s;font-weight:700;}
+.ci a:hover{color:var(--blue-dark)}
+.ci-ico{
+  width:44px;height:44px;background:var(--white); border: 1px solid var(--border);
+  border-radius:12px;display:flex;align-items:center;justify-content:center;
+  color: var(--slate);flex-shrink:0;
+}
+.ci-ico svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--white);border-top:1px solid var(--border);
+  padding:2rem 5%;display:flex;align-items:center;
+  justify-content:space-between;flex-wrap:wrap;gap:1.5rem;
+}
+.f-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.f-mark{
+  width:32px;height:32px;background:var(--blue);border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+}
+.f-mark svg{width:14px;height:14px;stroke:white;stroke-width:2.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.f-name{font-family:'Outfit',sans-serif;font-weight:800;font-size:.95rem;color:var(--ink);text-align:left;}
+.f-name em{color:var(--blue-text);font-style:normal;font-weight:600;}
+.f-copy{font-size:.9rem;color:var(--slate);font-weight:500;}
+.f-links{display:flex;gap:1.8rem}
+.f-links a{color:var(--slate);text-decoration:none;font-size:.9rem;transition:color .2s;font-weight:600;}
+.f-links a:hover{color:var(--blue-text)}
+
+/* ── ANIMATIONS ── */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s cubic-bezier(0.16, 1, 0.3, 1),transform .7s cubic-bezier(0.16, 1, 0.3, 1)}
+.reveal.in{opacity:1;transform:translateY(0)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .nav-links{display:none}
+  .prob-grid{grid-template-columns:1fr;gap:2.5rem}
+  .c-grid{grid-template-columns:1fr}
+  .stats-grid{grid-template-columns:repeat(2,1fr); gap:1.5rem;}
+  .steps-row{grid-template-columns:1fr;gap:2rem}
+  .steps-row::before{display:none}
+  .commit-grid{grid-template-columns:1fr}
+  .why-grid{grid-template-columns:1fr}
+  .hero-stats{gap:1.5rem}
+
+  /* Structural Fix: Left-align step rows on smaller screens to prevent weird vertical stacking */
+  .step-item { display: flex; flex-direction: row; align-items: flex-start; text-align: left; gap: 1.5rem; padding: 0; }
+  .step-circle { margin: 0; flex-shrink: 0; }
+  .step-t, .step-d { text-align: left; }
+}
+
+@media(max-width:600px){
+  /* Adjust Header */
+  .nav { padding: 0 5%; height: 64px; }
+  .logo-text { font-size: 0.95rem; }
+  .logo-mark { width: 36px; height: 36px; border-radius: 10px; }
+  .logo-mark svg { width: 18px; height: 18px; }
+  .nav-btn { padding: 0.6rem 1.2rem; font-size: 0.85rem; }
+
+  /* Adjust Hero */
+  .hero { padding: 100px 5% 4rem; }
+  .hero h1 { font-size: clamp(2.2rem, 8vw, 3rem); margin-bottom: 1rem; }
+  .hero p { font-size: 1.05rem; margin-bottom: 2rem; padding: 0 10px; }
+  .hero-pill { font-size: 0.75rem; padding: 0.4rem 1rem; }
+  .hero-btns { flex-direction: column; width: 100%; gap: 1rem; }
+  .btn-primary, .btn-ghost { width: 100%; justify-content: center; }
+  
+  .hero-stats { grid-template-columns: repeat(2, 1fr); display: grid; gap: 2rem; text-align: center; }
+  .hs-num { font-size: 2rem; }
+  .hs-lbl { font-size: 0.75rem; }
+
+  /* Adjust Sections */
+  .section { padding: 4rem 5%; }
+  .title { font-size: clamp(1.8rem, 8vw, 2.2rem); margin-bottom: 1rem; }
+  .sub { font-size: 1.05rem; }
+  
+  /* Problem Cards - Maintain standard left-alignment */
+  .row-item { flex-direction: column; gap: 0.8rem; padding: 1.4rem; text-align: left; align-items: flex-start;}
+  
+  /* Curriculum */
+  .c-card { padding: 1.8rem 1.5rem; text-align: left;}
+  .level-heading { font-size: 1.5rem; margin: 2.5rem 0 1.2rem; }
+  
+  /* Stats */
+  .stats-grid { grid-template-columns: 1fr; gap: 1.2rem;}
+  
+  /* Steps - Ensured robust left-alignment */
+  .step-item { gap: 1rem; }
+  .step-circle { width: 44px; height: 44px; font-size: 1rem; }
+  
+  /* Why */
+  .wc { flex-direction: column; padding: 1.8rem 1.5rem; text-align: left; align-items: flex-start; gap: 1rem; }
+  .wc-ico { margin-bottom: 0.5rem; }
+  
+  /* CTA */
+  .cta-section { padding: 5rem 5%; }
+  .cta-btns { flex-direction: column; width: 100%; gap: 1rem; }
+  .btn-whatsapp, .btn-ghost-email { width: 100%; justify-content: center; }
+  
+  /* Group Contacts strictly to the left, but perfectly centered inside their wrapper on mobile */
+  .contacts { flex-direction: column; align-items: flex-start; margin: 0 auto; width: fit-content; gap: 1.5rem; }
+  
+  /* Footer */
+  footer { flex-direction: column; align-items: center; text-align: center; gap: 1.5rem; padding: 2.5rem 5%; }
+  .f-links { flex-wrap: wrap; justify-content: center; }
+  .f-name { text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="#" class="logo">
+    <div class="logo-mark">
+      <svg viewBox="0 0 24 24"><line x1="5" y1="19" x2="19" y2="5"/><polyline points="9 5 19 5 19 15"/></svg>
+    </div>
+    <div class="logo-text">
+      <span>Ignite Institute</span>
+      <em>of Technology</em>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#problem">The Problem</a></li>
+    <li><a href="#curriculum">Curriculum</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#why">Why Partner</a></li>
+  </ul>
+  <a href="#contact" class="nav-btn">Partner With Us &rarr;</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-noise"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-content">
+    <div class="hero-pill"><div class="pill-dot"></div>Now partnering with Secondary schools in Nigeria</div>
+    <h1>Awakening the <span class="red">tech potential</span> in every <span class="dim">student.</span></h1>
+    <p>We partner with secondary schools to deliver AI-powered, hands-on tech training directly into classrooms , JSS 1 to SSS 3. No extra school. No gadgets required. We come to you.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary">Partner With Your School <span>&rarr;</span></a>
+      <a href="#curriculum" class="btn-ghost">See the Curriculum</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="hs-num">6<span class="accent">yrs</span></div><div class="hs-lbl">Progressive curriculum</div></div>
+      <div><div class="hs-num">5<span class="accent">+</span></div><div class="hs-lbl">Partner schools</div></div>
+      <div><div class="hs-num">500<span class="accent">K+</span></div><div class="hs-lbl">Digital pros Nigeria needs</div></div>
+      <div><div class="hs-num">83<span class="accent">%</span></div><div class="hs-lbl">Future jobs need digital skills</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-bar">
+  <div class="marquee-inner">
+    <div class="mi">Microsoft Office + AI</div><div class="mi">Google Workspace + Gemini AI</div>
+    <div class="mi">Canva Design</div><div class="mi">Figma UI/UX</div>
+    <div class="mi">Web Development</div><div class="mi">Digital Marketing</div>
+    <div class="mi">AI Literacy</div><div class="mi">Student Portfolios</div>
+    <div class="mi">IIT Certificates</div>
+    <div class="mi">Microsoft Office + AI</div><div class="mi">Google Workspace + Gemini AI</div>
+    <div class="mi">Canva Design</div><div class="mi">Figma UI/UX</div>
+    <div class="mi">Web Development</div><div class="mi">Digital Marketing</div>
+    <div class="mi">AI Literacy</div><div class="mi">Student Portfolios</div>
+    <div class="mi">IIT Certificates</div>
+  </div>
+</div>
+
+<!-- PROBLEM -->
+<section class="section prob-bg" id="problem">
+  <div class="label label-red">The Problem</div>
+  <div class="title">The digital skills gap is real and it is growing.</div>
+  <div class="prob-grid">
+    <div>
+      <span class="col-tag gap">The Gap in Secondary Schools</span>
+      <div class="row-item neg reveal"><div class="ri-ico n">📚</div><div class="ri-text">Computer Science taught in Nigeria's secondary schools is almost entirely theory , students never touch real tools</div></div>
+      <div class="row-item neg reveal"><div class="ri-ico n">🎨</div><div class="ri-text">There is no design or creativity tools so most students never discover their creative tech side</div></div>
+      <div class="row-item neg reveal"><div class="ri-ico n">🌐</div><div class="ri-text">Most students lack the right internet or digital skills training , Secondary school graduates are unprepared for university tech requirement</div></div>
+      <div class="row-item neg reveal"><div class="ri-ico n">🤖</div><div class="ri-text">Student lack indepth AI literacy and as the world accelerates, some secondary school students are being left behind</div></div>
+      <div class="row-item neg reveal"><div class="ri-ico n">💼</div><div class="ri-text">No real projects or portfolio , most students have nothing practical to show after six years of school</div></div>
+    </div>
+    <div>
+      <span class="col-tag fix">IIT's Solution</span>
+      <div class="row-item pos reveal"><div class="ri-ico p">⚡</div><div class="ri-text">We provide hands-on, tool-based learning using the exact same software industry uses daily</div></div>
+      <div class="row-item pos reveal"><div class="ri-ico p">✏️</div><div class="ri-text">We teach design and creativity skills with Canva, Figma, and professional AI creative tools</div></div>
+      <div class="row-item pos reveal"><div class="ri-ico p">🔗</div><div class="ri-text">Students get practical digital and internet skills embedded into every class and every session</div></div>
+      <div class="row-item pos reveal"><div class="ri-ico p">🧠</div><div class="ri-text">AI literacy built into every level from Microsoft Copilot in JSS 1 to marketing AI in SSS 3</div></div>
+      <div class="row-item pos reveal"><div class="ri-ico p">🚀</div><div class="ri-text">We train students to build real projects that solves real problems and student have portfolios they can show for internships, universities, and clients</div></div>
+      <div class="complete-banner reveal">
+        <strong>IIT does not replace your school.</strong>
+        <span>We complete it , inside your classrooms, on your schedule, at zero burden to you.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CURRICULUM -->
+<section class="section curr-bg" id="curriculum">
+  <div class="label label-blue">A 6-Year Digital Journey</div>
+  <div class="title">Every year builds on the last.</div>
+  <p class="sub">From JSS 1 to SSS 3, students graduate with portfolio-ready digital skills and an IIT certificate at every level.</p>
+  
+  <!-- JUNIOR SECONDARY -->
+  <h3 class="level-heading">Junior Secondary (JSS 1 – 3)</h3>
+  <div class="c-grid">
+    <div class="c-card reveal"><div class="c-lvl">JSS 1</div><div class="c-name">Microsoft Office + AI</div><div class="c-desc">Word, Excel, PowerPoint, and Microsoft Copilot. Students master the world's most widely used productivity suite powered by AI from day one.</div><div class="c-out">🎯 Outcome: A formatted Word report and PowerPoint presentation</div></div>
+    <div class="c-card reveal"><div class="c-lvl">JSS 2</div><div class="c-name">Google Workspace + Gemini AI</div><div class="c-desc">Docs, Sheets, Drive, Meet, and Gemini AI. Students collaborate on live group projects using the tools powering millions of organisations globally.</div><div class="c-out">🎯 Outcome: A live collaborative Google Workspace group project</div></div>
+    <div class="c-card reveal"><div class="c-lvl">JSS 3</div><div class="c-name">Canva Design + Website Dev</div><div class="c-desc">Graphic design, brand kits, and Canva websites. Students discover the power of visual communication and create professional digital content with AI.</div><div class="c-out">🎯 Outcome: A complete brand identity and published Canva website</div></div>
+  </div>
+
+  <!-- SENIOR SECONDARY -->
+  <h3 class="level-heading">Senior Secondary (SSS 1 – 3)</h3>
+  <div class="c-grid">
+    <div class="c-card reveal"><div class="c-lvl">SSS 1</div><div class="c-name">Product Design — UI/UX + AI</div><div class="c-desc">Design thinking, Figma, wireframing, and AI tools. Students learn to design digital products people love — one of Africa's most in-demand skills.</div><div class="c-out">🎯 Outcome: A complete mobile app prototype designed in Figma</div></div>
+    <div class="c-card reveal"><div class="c-lvl">SSS 2</div><div class="c-name">Website Development + AI</div><div class="c-desc">HTML, CSS, JavaScript, and GitHub Copilot. Students build real, functional websites from scratch and publish them live to the internet.</div><div class="c-out">🎯 Outcome: A live published personal or business website</div></div>
+    <div class="c-card reveal"><div class="c-lvl">SSS 3</div><div class="c-name">Digital Marketing</div><div class="c-desc">SEO, social media strategy, paid ads, and analytics. Students learn to grow businesses and brands online — a skill companies are aggressively hiring for.</div><div class="c-out">🎯 Outcome: A fully executed live digital marketing campaign</div></div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats-bg" id="stats">
+  <div class="header-center">
+    <div class="label label-blue">Why Act Now</div>
+    <div class="title" style="max-width:500px;">The digital economy won't wait.</div>
+  </div>
+  <div class="stats-grid">
+    <div class="s-card reveal"><div class="s-num">500<span class="r">K+</span></div><div class="s-lbl">Digital professionals Nigeria needs by 2030</div></div>
+    <div class="s-card reveal"><div class="s-num">#<span class="r">1</span></div><div class="s-lbl">Most in-demand skill across Africa is a tech skill</div></div>
+    <div class="s-card reveal"><div class="s-num">3<span class="r">×</span></div><div class="s-lbl">Higher earning potential for tech-skilled youth</div></div>
+    <div class="s-card reveal"><div class="s-num">83<span class="r">%</span></div><div class="s-lbl">Of future jobs will require digital skills</div></div>
+  </div>
+</section>
+
+<!-- HOW -->
+<section class="section how-bg" id="how">
+  <div class="label label-blue">Simple Process</div>
+  <div class="title">Simple. Seamless.<br>Zero burden on your school.</div>
+  <div class="steps-row">
+    <div class="step-item reveal">
+      <div class="step-circle">01</div>
+      <div class="step-content">
+        <div class="step-t">We Reach Out</div>
+        <div class="step-d">IIT contacts your school and books a brief meeting with the principal or leadership team</div>
+      </div>
+    </div>
+    <div class="step-item reveal">
+      <div class="step-circle">02</div>
+      <div class="step-content">
+        <div class="step-t">We Agree on a Schedule</div>
+        <div class="step-d">We fit our classes into your existing timetable — after school, free periods, or a dedicated slot</div>
+      </div>
+    </div>
+    <div class="step-item reveal">
+      <div class="step-circle">03</div>
+      <div class="step-content">
+        <div class="step-t">We Show Up</div>
+        <div class="step-d">Our instructors arrive fully prepared with laptops, projector, and a ready-to-go curriculum</div>
+      </div>
+    </div>
+    <div class="step-item reveal">
+      <div class="step-circle">04</div>
+      <div class="step-content">
+        <div class="step-t">Students Learn & Build</div>
+        <div class="step-d">Students learn hands-on, build real projects, and earn an IIT certificate on completion</div>
+      </div>
+    </div>
+    <div class="step-item reveal">
+      <div class="step-circle">05</div>
+      <div class="step-content">
+        <div class="step-t">Graduation</div>
+        <div class="step-d">Students graduate with certificates. Your school is listed as an official IIT Partner School</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMMITMENT -->
+<section class="section commit-bg">
+  <div class="label label-blue">Our Commitment</div>
+  <div class="title">We handle everything.<br>All you do is open the door.</div>
+  <div class="commit-grid">
+    <div class="cc reveal"><div class="cc-ico">📋</div><div class="cc-t">Curriculum & Lesson Plans</div><div class="cc-d">Fully designed for every class level from JSS 1 to SSS 3. No preparation needed from your teachers.</div></div>
+    <div class="cc reveal"><div class="cc-ico">👨‍💻</div><div class="cc-t">Qualified Instructors</div><div class="cc-d">Experienced tech professionals trained specifically to teach and engage secondary school students.</div></div>
+    <div class="cc reveal"><div class="cc-ico">💻</div><div class="cc-t">Laptops & Equipment</div><div class="cc-d">We bring all devices on every class day. Students need absolutely nothing — we provide it all.</div></div>
+    <div class="cc reveal"><div class="cc-ico">🎓</div><div class="cc-t">Student Certificates</div><div class="cc-d">Issued per class level completed. Students graduate each year with an IIT-recognised credential.</div></div>
+    <div class="cc reveal"><div class="cc-ico">📊</div><div class="cc-t">Progress Tracking</div><div class="cc-d">Regular reports shared with school leadership so you always know exactly how students are performing.</div></div>
+    <div class="cc reveal"><div class="cc-ico">🏅</div><div class="cc-t">IIT Partner School Badge</div><div class="cc-d">Your school is publicly listed and recognised as an official Ignite Institute of Technology Partner School.</div></div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="section why-bg" id="why">
+  <div class="label label-blue">Why Partner with IIT</div>
+  <div class="title">Great for your school.<br>Even better for your students.</div>
+  <div class="why-grid">
+    <div class="wc reveal"><div class="wc-ico">⭐</div><div><div class="wc-t">Enhanced Reputation</div><div class="wc-d">Become known as the most forward-thinking, tech-enabled school in Nigeria , a powerful differentiator in a competitive market.</div></div></div>
+    <div class="wc reveal"><div class="wc-ico">👨‍👩‍👧</div><div><div class="wc-t">Attract More Students</div><div class="wc-d">Parents today are actively searching for schools that offer modern, relevant programmes that genuinely prepare their children for the future.</div></div></div>
+    <div class="wc reveal"><div class="wc-ico">💰</div><div><div class="wc-t">Affordable Cost</div><div class="wc-d">World-class tech education at a cost that works for the school and for individual students — quality without the financial barrier.</div></div></div>
+    <div class="wc reveal"><div class="wc-ico">🏆</div><div><div class="wc-t">Official IIT Partner Badge</div><div class="wc-d">Your school receives the official IIT Partner School recognition — publicly listed and shared across all IIT platforms.</div></div></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <div class="cta-glow"></div>
+  <h2>Ready to <span class="r">ignite</span><br>your school?</h2>
+  <p>Join forward-thinking schools in Nigeria bringing world-class<br>tech education directly to their students.</p>
+  
+  <div class="cta-btns">
+    <a href="https://wa.me/2348180492520" class="btn-whatsapp" target="_blank">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+      WhatsApp Us Now &rarr;
+    </a>
+    <a href="mailto:director.igniteinstitute@gmail.com" class="btn-ghost-email">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+      Send Us an Email
+    </a>
+  </div>
+  
+  <div class="contacts">
+    <div class="ci">
+      <div class="ci-ico">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+      </div>
+      <a href="https://wa.me/2348180492520" target="_blank">08180492520</a>
+    </div>
+    
+    <div class="ci">
+      <div class="ci-ico">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+      </div>
+      <a href="mailto:director.igniteinstitute@gmail.com">director.igniteinstitute@gmail.com</a>
+    </div>
+    
+    <div class="ci">
+      <div class="ci-ico">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+      </div>
+      <span> Lagos State , Nigeria</span>
+    </div>
+
+    <div class="ci">
+      <div class="ci-ico">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+      </div>
+      <span> Ogun State , Nigeria</span>
+    </div>
+    
+    <div class="ci">
+      <div class="ci-ico">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+      </div>
+      <a href="https://instagram.com/iitafrica" target="_blank">@iitafrica</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#" class="f-logo">
+    <div class="f-mark"><svg viewBox="0 0 24 24"><line x1="5" y1="19" x2="19" y2="5"/><polyline points="9 5 19 5 19 15"/></svg></div>
+    <div class="f-name">Ignite Institute <em>of Technology</em></div>
+  </a>
+  <div class="f-copy">© 2026 IIT Africa. All rights reserved.</div>
+  <div class="f-links">
+    <a href="https://instagram.com/iitafrica" target="_blank">Instagram</a>
+    <a href="https://wa.me/2348180492520" target="_blank">WhatsApp</a>
+    <a href="mailto:director.igniteinstitute@gmail.com">Email</a>
+  </div>
+</footer>
+
+<script>
+const io=new IntersectionObserver(es=>{
+  es.forEach((e,i)=>{
+    if(e.isIntersecting){
+      setTimeout(()=>e.target.classList.add('in'),i*60);
+    }
+  });
+},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
